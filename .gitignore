@@ -2,7 +2,9 @@
 
 # dependencies
 /node_modules
+/.vscode
 /.pnp
+/amplify
 .pnp.js
 
 # testing
