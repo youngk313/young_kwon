@@ -1,0 +1,11 @@
+.course-wrap {
+    position: relative;
+}
+
+.description {
+    margin-left: 50px;
+}
+
+#content {
+    height: 50vh;
+}
