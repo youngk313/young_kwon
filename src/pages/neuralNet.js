@@ -1,6 +1,5 @@
 import { Component } from 'react';
 
-
 const RADIUS = 5;
 
 window.onload = () => {
@@ -142,8 +141,6 @@ function drawLink(context, x, y) {
 	context.lineTo(x, y);
 	context.stroke();	
 }
-
-
 
 class Neural extends Component {
     render() {
