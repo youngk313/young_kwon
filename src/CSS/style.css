@@ -1,9 +1,6 @@
-.course-wrap {
+.content-wrap {
     position: relative;
-}
-
-.description {
-    margin-left: 50px;
+    margin-left: 10px;
 }
 
 #content {

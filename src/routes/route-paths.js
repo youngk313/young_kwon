@@ -6,9 +6,10 @@ import Navigation from './route-nav';
 import * as ROUTES from './routes';
 
 import Home from './../pages/home';
-import Quizlet from './../pages/quiz';
-import Courses from './../pages/course';
+import Projects from './../pages/projects';
 
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import './../CSS/style.css';
 
@@ -16,16 +17,15 @@ function RouteMaster() {
     return(
         <div>
             <Grid container>
-                <Hidden smDown>
-                    <Grid item xs={2}>
+                <Grid item xs={2}>
+                    <Hidden mdDown>
                         <Navigation />
-                    </Grid>
-                </Hidden>
+                    </Hidden>
+                </Grid>
                 <Grid item xs={12} sm={6}>
                     <div id="content">
                         <Route exact path={ROUTES.HOME} component={Home}/>
-                        <Route path={ROUTES.COURSE} component={Courses}/>
-                        <Route path={ROUTES.QUIZ} component={Quizlet}/>
+                        <Route exact path={ROUTES.PROJECTS} component={Projects}/>
                     </div>
                 </Grid>
             </Grid>

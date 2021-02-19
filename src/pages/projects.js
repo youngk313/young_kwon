@@ -1,14 +1,14 @@
 import { Component } from 'react';
-import Neural from './neuralNet';
 
-class Home extends Component {
+
+class Projects extends Component {
     render() {
         return(
             <div className="content-wrap">
-                <Neural/>
+                <h1>Projects</h1>
             </div>
         )
     }
 }
 
-export default Home
+export default Projects

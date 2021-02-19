@@ -1,10 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 import RouteMaster from './routes/route-paths';
-import Navigation from './routes/route-nav';
+import AppBar from './AppBar';
+
+import Paper from '@material-ui/core/Paper';
+
+import bgImage from './images/background_photo.jpg';
 
 class App extends Component {
   constructor(props) {
@@ -14,13 +17,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Hello there, <br/>
-            My name is Young. <br/>
-          </p>
-        </header>
+        <AppBar/>
         <div>
           <Router>
             <RouteMaster />
