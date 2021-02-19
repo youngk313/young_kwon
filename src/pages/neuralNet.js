@@ -1,59 +1,5 @@
 import { Component } from 'react';
 
-const RADIUS = 5;
-let X_RAD = Math.PI / 540;
-let Y_RAD = Math.PI / 720;
-
-window.onload = () => {
-	const c = document.getElementById("neural");
-	c.width = window.innerWidth;
-	c.height = window.innerHeight;
-	const ctx = c.getContext("2d");
-	window.addEventListener('resize', function() {
-		let dimensions = onResize(c);
-		c.width = dimensions[0];
-		c.height = dimensions[1];
-	});
-
-	const START_X = c.width / 2;
-	const START_Y = c.height / 2;
-
-	let SPHERE_R = c.width / 4;
-	let PERSPECTIVE = c.width * 0.8;
-
-	const neurons = createNeurons(START_X, START_Y, RADIUS, '#01579b', ctx);
-	animate(ctx, c, neurons, SPHERE_R, PERSPECTIVE, c);
-}
-
-
-function onResize() {
-	let dimensions = [window.innerWidth, window.innerHeight];
-	return dimensions;
-}
-
-function animate(context, canvas, neurons, sphere_r, persp, c) {
-
-	requestAnimationFrame(function() { animate(context, canvas, neurons, sphere_r, persp, c); });
-	context.clearRect(0, 0, canvas.width, canvas.height);
-
-	let dimensions = onResize(c);
-    c.width = dimensions[0];
-	c.height = dimensions[1];
-
-	let firstNeuron = neurons[0];
-	for (let i = 1; i < neurons.length; ++i) {
-		neurons[i].draw(sphere_r, persp, X_RAD, Y_RAD);
-	}
-	neurons.sort((n1, n2) => {
-		return n1.scale - n2.scale;
-	});
-	for (let i = 1; i < neurons.length; ++i) {
-		neurons[i].draw(sphere_r, persp, X_RAD, Y_RAD);
-	}
-	firstNeuron.rotate(firstNeuron);
-
-}
-
 class Neuron {
 	constructor(x, y, r, color, context) {
 		this.x = x;
@@ -158,10 +104,64 @@ function createNeurons(startx, starty, radius, color, context) {
 
 
 class Neural extends Component {
+
+    componentDidMount() {
+            const RADIUS = 5;
+    let X_RAD = Math.PI / 540;
+    let Y_RAD = Math.PI / 720;
+
+    const c = document.getElementById("neural");
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+    const ctx = c.getContext("2d");
+    window.addEventListener('resize', function() {
+        let dimensions = onResize(c);
+        c.width = dimensions[0];
+        c.height = dimensions[1];
+    });
+
+    const START_X = c.width / 2;
+    const START_Y = c.height / 2;
+
+    let SPHERE_R = c.width / 4;
+    let PERSPECTIVE = c.width * 0.8;
+
+    const neurons = createNeurons(START_X, START_Y, RADIUS, '#01579b', ctx);
+    animate(ctx, c, neurons, SPHERE_R, PERSPECTIVE, c);
+
+    function onResize() {
+        let dimensions = [window.innerWidth, window.innerHeight];
+        return dimensions;
+    }
+
+    function animate(context, canvas, neurons, sphere_r, persp, c) {
+
+        requestAnimationFrame(function() { animate(context, canvas, neurons, sphere_r, persp, c); });
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        let dimensions = onResize(c);
+        c.width = dimensions[0];
+        c.height = dimensions[1];
+
+        let firstNeuron = neurons[0];
+        for (let i = 1; i < neurons.length; ++i) {
+            neurons[i].draw(sphere_r, persp, X_RAD, Y_RAD);
+        }
+        neurons.sort((n1, n2) => {
+            return n1.scale - n2.scale;
+        });
+        for (let i = 1; i < neurons.length; ++i) {
+            neurons[i].draw(sphere_r, persp, X_RAD, Y_RAD);
+        }
+        firstNeuron.rotate(firstNeuron);
+
+        }
+    }
+
     render() {
         return(
             <div className="content-wrap">
-                <canvas id="neural">About Me</canvas>
+                <canvas id="neural"></canvas>
             </div>
         )
     }
