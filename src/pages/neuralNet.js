@@ -175,10 +175,10 @@ class Neural extends Component {
             c.height = dimensions[1];
         });
 
-        const START_X = c.width / 2;
-        const START_Y = c.height / 2;
+        const START_X = c.width / 4.5;
+        const START_Y = c.height / 2.5;
 
-        let SPHERE_R = c.width / 4;
+        let SPHERE_R = c.width / 4.5;
         let PERSPECTIVE = c.width * 0.8;
 
         const neurons = createNeurons(START_X, START_Y, RADIUS, '#01579b', ctx);
@@ -215,7 +215,7 @@ class Neural extends Component {
 
     render() {
         return(
-            <div className="content-wrap">
+            <div style={{width: "300px"}}>
                 <canvas id="neural"></canvas>
             </div>
         )
