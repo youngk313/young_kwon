@@ -51,12 +51,13 @@ class OuterNeuron {
 
 		this.context = context;
 		this.color = color;
+		this.connect = new Connection(firstNeuron, context, this);
 	}
 
 	project(sphere_r, persp) {
 		this.x = sphere_r * this.dist_ratio * Math.sin(this.phi) * Math.cos(this.theta);
 		this.y = sphere_r * this.dist_ratio * Math.cos(this.phi);
-		this.z = sphere_r * (this.dist_ratio *Math.sin(this.phi) * Math.sin(this.theta) + 1);
+		this.z = sphere_r * (this.dist_ratio * Math.sin(this.phi) * Math.sin(this.theta) + 1);
 
 		this.scale = persp / (persp + this.z);
 
@@ -65,7 +66,7 @@ class OuterNeuron {
 	}
 
 	rotate(x_rad, y_rad) {
-		this.phi -= x_rad;
+		//this.phi -= x_rad;
 		this.theta += y_rad;
 	}
 
@@ -78,18 +79,72 @@ class OuterNeuron {
 		this.context.fillStyle = this.color;
 		this.context.fill();
 		this.context.stroke();
-
-		/*this.context.lineTo(this.centreX, this.centreY);
-		this.context.strokeStyle = "#7E7E7E";
-		this.context.stroke();*/
+		this.context.strokeStyle = this.color;
 		this.context.closePath();
+		this.connect.draw(persp, x_rad, y_rad, sphere_r*this.dist_ratio);
 	}
 }
 
 class Connection {
-	constructor(firstNeuron) {
+	constructor(firstNeuron, context, outerNeuron) {
 		this.startX = firstNeuron.x;
-		this.startY = firstNeuron.y; 
+		this.startY = firstNeuron.y;
+		this.theta = outerNeuron.theta;
+		this.phi = outerNeuron.phi; 
+
+		this.x = 0;
+		this.y = 0;
+		this.z = 0;
+		this.length = 5;
+
+		this.xProj = 0;
+		this.yProj = 0;
+		this.scale = 0;
+
+		this.context = context;
+		this.color = outerNeuron.color;
+
+		this.centreX = firstNeuron.x;
+		this.centreY = firstNeuron.y;
+	}
+
+	project(persp) {
+		this.x = this.length * Math.sin(this.phi) * Math.cos(this.theta);
+		this.y = this.length * Math.cos(this.phi);
+
+		this.scale = persp / (persp + this.z); 
+		this.xProj = (this.x * this.scale) + this.startX;
+		this.yProj = (this.y * this.scale) + this.startY;
+	}
+
+	rotate(x_rad, y_rad) {
+		//this.phi -= x_rad;
+		this.theta += y_rad;
+	}
+
+	move(persp, x_rad, y_rad) {
+		this.startX += 0.5 * this.length * Math.sin(this.phi) * Math.cos(this.theta);
+		this.startY += 0.5 * this.length * Math.cos(this.phi);
+		this.project(persp);
+	}
+
+	dist(x_coord, y_coord) {
+		return Math.sqrt(Math.pow(Math.abs(x_coord - this.centreX), 2) + Math.pow(Math.abs(y_coord - this.centreY), 2));
+	}
+
+	draw(persp, x_rad, y_rad, coordinates) {
+		this.context.beginPath();
+		this.context.moveTo(this.startX, this.startY); 
+		this.move(persp, x_rad, y_rad);
+		if (this.dist(this.xProj, this.yProj) >= coordinates * 0.9) {
+			this.startX = this.centreX;
+			this.startY = this.centreY;
+		} else{
+			this.context.strokeStyle = this.color;
+		}
+		this.context.lineTo(this.xProj, this.yProj);
+		this.context.stroke();
+		this.context.closePath();
 	}
 }
 
@@ -106,54 +161,54 @@ function createNeurons(startx, starty, radius, color, context) {
 class Neural extends Component {
 
     componentDidMount() {
-            const RADIUS = 5;
-    let X_RAD = Math.PI / 540;
-    let Y_RAD = Math.PI / 720;
+        const RADIUS = 5;
+        let X_RAD = Math.PI / 540;
+        let Y_RAD = Math.PI / 720;
 
-    const c = document.getElementById("neural");
-    c.width = window.innerWidth;
-    c.height = window.innerHeight;
-    const ctx = c.getContext("2d");
-    window.addEventListener('resize', function() {
-        let dimensions = onResize(c);
-        c.width = dimensions[0];
-        c.height = dimensions[1];
-    });
-
-    const START_X = c.width / 2;
-    const START_Y = c.height / 2;
-
-    let SPHERE_R = c.width / 4;
-    let PERSPECTIVE = c.width * 0.8;
-
-    const neurons = createNeurons(START_X, START_Y, RADIUS, '#01579b', ctx);
-    animate(ctx, c, neurons, SPHERE_R, PERSPECTIVE, c);
-
-    function onResize() {
-        let dimensions = [window.innerWidth, window.innerHeight];
-        return dimensions;
-    }
-
-    function animate(context, canvas, neurons, sphere_r, persp, c) {
-
-        requestAnimationFrame(function() { animate(context, canvas, neurons, sphere_r, persp, c); });
-        context.clearRect(0, 0, canvas.width, canvas.height);
-
-        let dimensions = onResize(c);
-        c.width = dimensions[0];
-        c.height = dimensions[1];
-
-        let firstNeuron = neurons[0];
-        for (let i = 1; i < neurons.length; ++i) {
-            neurons[i].draw(sphere_r, persp, X_RAD, Y_RAD);
-        }
-        neurons.sort((n1, n2) => {
-            return n1.scale - n2.scale;
+        const c = document.getElementById("neural");
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+        const ctx = c.getContext("2d");
+        window.addEventListener('resize', function() {
+            let dimensions = onResize(c);
+            c.width = dimensions[0];
+            c.height = dimensions[1];
         });
-        for (let i = 1; i < neurons.length; ++i) {
-            neurons[i].draw(sphere_r, persp, X_RAD, Y_RAD);
+
+        const START_X = c.width / 2;
+        const START_Y = c.height / 2;
+
+        let SPHERE_R = c.width / 4;
+        let PERSPECTIVE = c.width * 0.8;
+
+        const neurons = createNeurons(START_X, START_Y, RADIUS, '#01579b', ctx);
+        animate(ctx, c, neurons, SPHERE_R, PERSPECTIVE, c);
+
+        function onResize() {
+            let dimensions = [window.innerWidth, window.innerHeight];
+            return dimensions;
         }
-        firstNeuron.rotate(firstNeuron);
+
+        function animate(context, canvas, neurons, sphere_r, persp, c) {
+
+            requestAnimationFrame(function() { animate(context, canvas, neurons, sphere_r, persp, c); });
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            let dimensions = onResize(c);
+            c.width = dimensions[0];
+            c.height = dimensions[1];
+
+            let firstNeuron = neurons[0];
+            for (let i = 1; i < neurons.length; ++i) {
+                neurons[i].draw(sphere_r, persp, X_RAD, Y_RAD);
+            }
+            neurons.sort((n1, n2) => {
+                return n1.scale - n2.scale;
+            });
+            for (let i = 1; i < neurons.length; ++i) {
+                neurons[i].draw(sphere_r, persp, X_RAD, Y_RAD);
+            }
+            firstNeuron.rotate(firstNeuron);
 
         }
     }
