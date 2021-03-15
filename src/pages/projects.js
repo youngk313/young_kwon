@@ -1,11 +1,14 @@
 import { Component } from 'react';
 
 import Card from '@material-ui/core/Card';
+import Paper from "@material-ui/core/Paper";
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+
+import Image from 'material-ui-image';
 
 import '../CSS/projects.css';
 import PickrImage from "../images/pickr_snapshot.png"
@@ -15,8 +18,8 @@ class Projects extends Component {
     render() {
         return(
             <div className="root">
-                <Grid container spacing={6}>
-                    <Grid item xs={12} sm={6}>
+                <Grid container spacing={1}>
+                    <Grid item sm={3}>
                         <Card className="card"> 
                             <CardHeader title="WatchMaL"/>
                             <CardMedia
@@ -31,7 +34,9 @@ class Projects extends Component {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                </Grid>
+                <Grid container spacing={1}>
+                    <Grid item sm={3}>
                         <Card className="card"> 
                             <CardHeader title="Pickr"/>
                             <CardMedia
@@ -46,9 +51,9 @@ class Projects extends Component {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} md={6}>
+                    <Grid item sm={3}>
                         <Card className="card"> 
-                            <CardHeader title="Wave Simulation"/>
+                            <CardHeader title="CodeBuddy"/>
                             <CardMedia
                                 className="media"
                                 image={PickrImage}
@@ -57,6 +62,21 @@ class Projects extends Component {
                             <CardContent>
                                 <Typography variant="body2" color="textSecondary"component="p">
                                     Created a fluid mechanics program using MATLAB to simulate waves in a closed container.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item sm={3}>
+                        <Card className="card"> 
+                            <CardHeader title="Dynamic Quiz Generator"/>
+                            <CardMedia
+                                className="media"
+                                image={PickrImage}
+                                title="pickr"
+                            />
+                            <CardContent>
+                                <Typography variant="body2" color="textSecondary"component="p">
+                                    
                                 </Typography>
                             </CardContent>
                         </Card>

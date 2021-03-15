@@ -22,12 +22,9 @@ class Home extends Component {
         return(
             <div id='greeting' className="content-wrap">
                 <Grow in={this.state.open}>
-                    <Typography variant="h5" display='block'>
+                    <Typography variant="h5" display='inline'>
                         <Box fontSize={32} m={2}>
                             Welcome!
-                        </Box>
-                        <Box fontSize={18}>
-                        My name is Young and I am a developer who is enthusiastic about machine learning, renewable energy, and web development.
                         </Box>
                     </Typography>
                 </Grow>

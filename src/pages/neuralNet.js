@@ -159,35 +159,56 @@ function createNeurons(startx, starty, radius, color, context) {
 	return neurons;
 }
 
-class Neural extends Component {
+function onResize() {
+	let dimensions = [window.innerWidth, window.innerHeight];
+	return dimensions;
+}
 
-    componentDidMount() {
-        let X_RAD = Math.PI / 540;
+class Neural extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			width: window.innerWidth,
+			height: window.innerHeight
+		}
+		this.handleResize = this.handleResize.bind(this);
+		this.createNN = this.createNN.bind(this);
+	}
+
+	handleResize = () => {
+		this.setState({
+			width: window.innerWidth,
+			height: window.innerHeight
+		});
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.handleResize);
+	}
+
+	componentDidUpdate() {
+		this.createNN();
+	}
+
+	createNN = () => {
+		let X_RAD = Math.PI / 540;
         let Y_RAD = Math.PI / 720;
 
         const c = document.getElementById("neural");
-        c.width = window.innerWidth;
-        c.height = window.innerHeight;
+		window.addEventListener('resize', this.handleResize);
+        c.width = this.state.width;
+        c.height = this.state.height;
         const ctx = c.getContext("2d");
-        window.addEventListener('resize', function() {
-            let dimensions = onResize(c);
-            c.width = dimensions[0];
-            c.height = dimensions[1];
-        });
+        
 		const RADIUS = c.height / 300;
-        const START_X = c.width / 4;
-        const START_Y = c.height / 2.5;
+        let START_X = c.width / 1.6;
+        let START_Y = c.height / 2.5;
 
         let SPHERE_R = c.width / 5.5;
         let PERSPECTIVE = c.width * 0.8;
 
         const neurons = createNeurons(START_X, START_Y, RADIUS, '#FEF9C7', ctx);
         animate(ctx, c, neurons, SPHERE_R, PERSPECTIVE, c);
-
-        function onResize() {
-            let dimensions = [window.innerWidth, window.innerHeight];
-            return dimensions;
-        }
 
         function animate(context, canvas, neurons, sphere_r, persp, c) {
 
@@ -210,12 +231,16 @@ class Neural extends Component {
             }
             firstNeuron.rotate(firstNeuron);
         }
+	}
+
+    componentDidMount() {
+       this.createNN();
     }
 
     render() {
         return(
-            <div style={{width:'50%', margin:'auto', transform: 'trans'}}>
-                <canvas id="neural"></canvas>
+            <div style={{width:'80%', textAlign: 'center'}}>
+                <canvas id="neural" style={{width: '100%'}}></canvas>
             </div>
         )
     }
