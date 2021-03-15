@@ -62,7 +62,6 @@ class Projects extends Component {
                         </Card>
                     </Grid>
                 </Grid>
-                
             </div>
         )
     }

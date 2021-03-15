@@ -152,13 +152,12 @@ class Connection {
 
 function createNeurons(startx, starty, radius, color, context) {
 	let neurons = [];
-	let centreNeuron = new Neuron(startx, starty, radius, "white", context);
+	let centreNeuron = new Neuron(startx, starty, radius, "#F4976C", context);
 	neurons.push(centreNeuron);
 	for (let i = 0; i < NEURON_NUM; ++i)
 		neurons.push(new OuterNeuron(centreNeuron, context, radius, color));
 	return neurons;
 }
-
 
 class Neural extends Component {
 
@@ -175,14 +174,14 @@ class Neural extends Component {
             c.width = dimensions[0];
             c.height = dimensions[1];
         });
-		const RADIUS = c.height / 350;
-        const START_X = c.width / 5.5;
+		const RADIUS = c.height / 300;
+        const START_X = c.width / 4;
         const START_Y = c.height / 2.5;
 
         let SPHERE_R = c.width / 5.5;
         let PERSPECTIVE = c.width * 0.8;
 
-        const neurons = createNeurons(START_X, START_Y, RADIUS, 'black', ctx);
+        const neurons = createNeurons(START_X, START_Y, RADIUS, '#FEF9C7', ctx);
         animate(ctx, c, neurons, SPHERE_R, PERSPECTIVE, c);
 
         function onResize() {
@@ -215,7 +214,7 @@ class Neural extends Component {
 
     render() {
         return(
-            <div style={{width:'50%', margin:'auto'}}>
+            <div style={{width:'50%', margin:'auto', transform: 'trans'}}>
                 <canvas id="neural"></canvas>
             </div>
         )
