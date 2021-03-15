@@ -1,13 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Avatar from '@material-ui/core/Avatar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Link from '@material-ui/core/Link';
+
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +35,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "10px",
   },
   headers: {
+    color: 'black',
     marginRight: "15px",
+    textDecoration: 'none'
   }
 }));
 
@@ -51,8 +54,8 @@ export default function ButtonAppBar() {
             </Box>
           </Typography>
           <Typography  variant="h6" align='center' color ="textPrimary" >
-            <Link href="#about" color="textPrimary" className={classes.headers}>About Me</Link>
-            <Link href="#projects" color="textPrimary" className={classes.headers}>Projects</Link>
+            <AnchorLink href="#about" className={classes.headers}>About Me</AnchorLink>
+            <AnchorLink href="#projects" className={classes.headers}>Projects</AnchorLink>
           </Typography>
           <Link href="https://www.linkedin.com/in/youngkwon313" color="textPrimary" rel="noopener" target="_blank"> <LinkedInIcon className={classes.social}/></Link>
           <Link href="https://github.com/youngk313/" color="textPrimary" rel="noopener" target="_blank"> <GitHubIcon className={classes.social}/></Link>

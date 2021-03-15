@@ -9,7 +9,7 @@ import Grow from '@material-ui/core/Grow';
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {open: false};
+        this.state = {open: true};
     }
 
     componentDidMount() {
@@ -21,13 +21,14 @@ class Home extends Component {
     render() {
         return(
             <div id='greeting' className="content-wrap">
-                <Grow in={this.state.open}>
-                    <Typography variant="h5" display='inline'>
-                        <Box fontSize={32} m={2}>
-                            Welcome!
-                        </Box>
-                    </Typography>
-                </Grow>
+                <Typography variant="h5" display='inline'>
+                <Grow in={this.state.open} timeout={500}>
+                    <Box fontSize={32} m={2}>
+                        Hi, I'm Young!
+                    </Box>
+                    </Grow>
+                </Typography>
+           
                 <Neural/>
             </div>
         )

@@ -2,6 +2,7 @@
     flex-grow: 1;
     margin-top: 50px;
     padding: 50px;
+    text-align: center;
 }
 
 .media {
@@ -21,3 +22,11 @@
     margin: auto;
 }
 
+.headings {
+    margin-bottom: 50px;
+}
+
+#about_section {
+    text-align: center;
+    padding-top: 50px;
+}

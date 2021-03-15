@@ -6,20 +6,29 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import Zoom from '@material-ui/core/Zoom';
 
 import Image from 'material-ui-image';
 
 import '../CSS/projects.css';
 import PickrImage from "../images/pickr_snapshot.png"
 import Electron from "../images/electron_light.jpg"
+import BotPic from '../images/discord_bot.png'
 
 class Projects extends Component {
     render() {
         return(
             <div className="root">
+                <div className="headings">
+                    <Typography variant="h4" >
+                        Projects
+                    </Typography>
+                </div>
                 <Grid container spacing={1}>
                     <Grid item sm={3}>
+                        <Zoom in={true} timeout={1000}>
                         <Card className="card"> 
                             <CardHeader title="WatchMaL"/>
                             <CardMedia
@@ -33,6 +42,7 @@ class Projects extends Component {
                                 </Typography>
                             </CardContent>
                         </Card>
+                        </Zoom>
                     </Grid>
                 </Grid>
                 <Grid container spacing={1}>
@@ -56,12 +66,12 @@ class Projects extends Component {
                             <CardHeader title="CodeBuddy"/>
                             <CardMedia
                                 className="media"
-                                image={PickrImage}
+                                image={BotPic}
                                 title="pickr"
                             />
                             <CardContent>
                                 <Typography variant="body2" color="textSecondary"component="p">
-                                    Created a fluid mechanics program using MATLAB to simulate waves in a closed container.
+                                    Created a Discord Bot capable of moderating comments, searching Wikipedia, playing a game of BlackJack, and polling.
                                 </Typography>
                             </CardContent>
                         </Card>
