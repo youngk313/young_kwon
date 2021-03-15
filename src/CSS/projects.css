@@ -1,0 +1,22 @@
+.root {
+    flex-grow: 1;
+    margin-top: 50px;
+}
+
+.media {
+    height: 0;
+    padding-top: 56.25%;
+}
+
+@font-face {
+    font-family: 'headers';
+    src: url('../fonts/sanspro/SourceSansPro-Regular.ttf');
+}
+
+.card {
+    font-family:'headers';
+    max-width: 400px;
+    height: 450px;
+    margin: auto;
+}
+

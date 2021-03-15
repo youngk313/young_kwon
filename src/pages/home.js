@@ -13,6 +13,4 @@ class Home extends Component {
     }
 }
 
-
-console.log("at home");
 export default Home

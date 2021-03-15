@@ -1,5 +1,7 @@
 import { Component } from 'react';
 
+const NEURON_NUM = 100;
+
 class Neuron {
 	constructor(x, y, r, color, context) {
 		this.x = x;
@@ -150,9 +152,9 @@ class Connection {
 
 function createNeurons(startx, starty, radius, color, context) {
 	let neurons = [];
-	let centreNeuron = new Neuron(startx, starty, radius, 'orange', context);
+	let centreNeuron = new Neuron(startx, starty, radius, "white", context);
 	neurons.push(centreNeuron);
-	for (let i = 0; i < 150; ++i)
+	for (let i = 0; i < NEURON_NUM; ++i)
 		neurons.push(new OuterNeuron(centreNeuron, context, radius, color));
 	return neurons;
 }
@@ -161,7 +163,6 @@ function createNeurons(startx, starty, radius, color, context) {
 class Neural extends Component {
 
     componentDidMount() {
-        const RADIUS = 5;
         let X_RAD = Math.PI / 540;
         let Y_RAD = Math.PI / 720;
 
@@ -174,14 +175,14 @@ class Neural extends Component {
             c.width = dimensions[0];
             c.height = dimensions[1];
         });
-
-        const START_X = c.width / 4.5;
+		const RADIUS = c.height / 350;
+        const START_X = c.width / 5.5;
         const START_Y = c.height / 2.5;
 
-        let SPHERE_R = c.width / 4.5;
+        let SPHERE_R = c.width / 5.5;
         let PERSPECTIVE = c.width * 0.8;
 
-        const neurons = createNeurons(START_X, START_Y, RADIUS, '#01579b', ctx);
+        const neurons = createNeurons(START_X, START_Y, RADIUS, 'black', ctx);
         animate(ctx, c, neurons, SPHERE_R, PERSPECTIVE, c);
 
         function onResize() {
@@ -209,13 +210,12 @@ class Neural extends Component {
                 neurons[i].draw(sphere_r, persp, X_RAD, Y_RAD);
             }
             firstNeuron.rotate(firstNeuron);
-
         }
     }
 
     render() {
         return(
-            <div style={{width: "300px"}}>
+            <div style={{width:'50%', margin:'auto'}}>
                 <canvas id="neural"></canvas>
             </div>
         )

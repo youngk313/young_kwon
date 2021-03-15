@@ -1,5 +1,5 @@
 body {
-  background-color: black;
+  background-color: #3AAFA9;
 }
 
 .background{
@@ -12,6 +12,7 @@ body {
 
 .App {
   color:white;
+  margin: auto;
 }
 
 .App-logo {

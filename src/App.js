@@ -1,13 +1,11 @@
 import './App.css';
 import { Component } from 'react';
-
-import { BrowserRouter as Router } from 'react-router-dom';
-import RouteMaster from './routes/route-paths';
 import AppBar from './AppBar';
+import * as ROUTES from './routes/routes';
 
-import Paper from '@material-ui/core/Paper';
-
-import bgImage from './images/background_photo.jpg';
+import Home from './pages/home';
+import Projects from './pages/projects';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class App extends Component {
   constructor(props) {
@@ -17,12 +15,14 @@ class App extends Component {
   render(){
     return (
       <div className="App">
+        <Router>
         <AppBar/>
-        <div>
-          <Router>
-            <RouteMaster />
-          </Router>
-        </div>
+          <div id="content">
+              <Route exact path={ROUTES.HOME} component={Home}/>
+              <Route exact path={ROUTES.PROJECTS} component={Projects}/>
+          </div>
+        </Router>
+ 
       </div>
     );
   }
