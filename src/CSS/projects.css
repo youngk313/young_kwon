@@ -22,6 +22,10 @@
     margin: auto;
 }
 
+.card_comp {
+    background-color: #FDF8F5;
+}
+
 .headings {
     margin-bottom: 50px;
 }
