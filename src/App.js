@@ -20,9 +20,8 @@ class App extends Component {
           <div id="content">
               <Home/>
           </div>
-            
           <div id="projects">
-            <About/>
+          <About/>
             <Projects/>
           </div>
  

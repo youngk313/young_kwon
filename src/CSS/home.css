@@ -1,3 +1,8 @@
 #greeting {
     text-align: center;
 }
+
+.content-wrap {
+    position: relative;
+    margin-left: 10px;
+}

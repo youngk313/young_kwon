@@ -6,12 +6,9 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Zoom from '@material-ui/core/Zoom';
 import { shadows } from '@material-ui/system';
-
-import VisibilitySensor from 'react-visibility-sensor';
 
 import '../CSS/projects.css';
 import PickrImage from "../images/pickr_snapshot.png"
@@ -61,17 +58,19 @@ class Projects extends Component {
                         Projects
                     </Typography>
                 </div>
-                <Grid container spacing={1}>
+                <Grid container spacing={3}>
                     <Grid item sm={3}>
                         <Zoom in={this.state.transition} timeout={1000}>
                         <Card className="card" boxShadow={3}> 
-                        <Link href="https://github.com/youngk313/WatChMaL" underline="none" color="textPrimary" rel="noopener" target="_blank"><CardHeader title="WatChMaL"/> </Link>
+                            <Link href="https://github.com/youngk313/WatChMaL" underline="none" color="textPrimary" rel="noopener" target="_blank">
+                                <CardHeader title="WatChMaL" className="card_comp"/> 
+                            </Link>
                             <CardMedia
                                 className="media"
                                 image={Electron}
                                 title="pickr"
                             />
-                            <CardContent>
+                            <CardContent className="card_comp"> 
                                 <Typography variant="body2" color="textSecondary"component="p">
                                     Machine learning program that can predict energy levels based on particle collision data using a regressive neural network. 
                                 </Typography>
@@ -81,7 +80,7 @@ class Projects extends Component {
                     </Grid>
                     <Grid item sm={3}>
                         <Zoom in={this.state.transition} timeout={1200}>
-                            <Card className="card"> 
+                            <Card className="card"  boxShadow={3}> 
                             <Link href="https://pickr-dev.firebaseapp.com" underline="none" color="textPrimary" rel="noopener" target="_blank"><CardHeader title="Pickr" className="card_comp"/></Link>
                                 <CardMedia
                                     className="media"

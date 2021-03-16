@@ -20,6 +20,7 @@
     max-width: 320px;
     height: 400px;
     margin: auto;
+    background-color: #FDF8F5;
 }
 
 .card_comp {
@@ -28,9 +29,4 @@
 
 .headings {
     margin-bottom: 50px;
-}
-
-#about_section {
-    text-align: center;
-    padding-top: 50px;
 }

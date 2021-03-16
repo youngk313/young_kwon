@@ -28,7 +28,6 @@ class Home extends Component {
                     </Box>
                     </Grow>
                 </Typography>
-           
                 <Neural/>
             </div>
         )

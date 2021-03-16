@@ -1,8 +1,16 @@
-.content-wrap {
-    position: relative;
-    margin-left: 10px;
+#about_section {
+    color: black;
+    text-align: center;
+    background-color: #f2efe2;
+    padding: 50px;
 }
 
-#content {
-    height: 50vh;
+#intro {
+    text-align: justify;
+}
+
+#profile {
+    margin-top: 20px;
+    width: 200px; 
+    height: 200px;
 }
