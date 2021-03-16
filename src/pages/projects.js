@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
 import Card from '@material-ui/core/Card';
-import Paper from "@material-ui/core/Paper";
+import Link from '@material-ui/core/Link';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -11,13 +11,13 @@ import Grid from '@material-ui/core/Grid';
 import Zoom from '@material-ui/core/Zoom';
 import { shadows } from '@material-ui/system';
 
-import Image from 'material-ui-image';
 import VisibilitySensor from 'react-visibility-sensor';
 
 import '../CSS/projects.css';
 import PickrImage from "../images/pickr_snapshot.png"
 import Electron from "../images/electron_light.jpg"
-import BotPic from '../images/discord_bot.png'
+import BotPic from '../images/discord.gif'
+import QuizGif from '../images/quiz.gif'
 
 class Projects extends Component {
     constructor(props) {
@@ -53,7 +53,7 @@ class Projects extends Component {
     }
 
     render() {
-      
+       
         return(
             <div className="root">
                 <div className="headings">
@@ -65,7 +65,7 @@ class Projects extends Component {
                     <Grid item sm={3}>
                         <Zoom in={this.state.transition} timeout={1000}>
                         <Card className="card" boxShadow={3}> 
-                            <CardHeader title="WatChMaL"/>
+                        <Link href="https://github.com/youngk313/WatChMaL" underline="none" color="textPrimary" rel="noopener" target="_blank"><CardHeader title="WatChMaL"/> </Link>
                             <CardMedia
                                 className="media"
                                 image={Electron}
@@ -73,7 +73,7 @@ class Projects extends Component {
                             />
                             <CardContent>
                                 <Typography variant="body2" color="textSecondary"component="p">
-                                    Adjusted machine learning program to predict energy levels based on particle collsion data. 
+                                    Machine learning program that can predict energy levels based on particle collision data using a regressive neural network. 
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -82,7 +82,7 @@ class Projects extends Component {
                     <Grid item sm={3}>
                         <Zoom in={this.state.transition} timeout={1200}>
                             <Card className="card"> 
-                                <CardHeader title="Pickr" className="card_comp"/>
+                            <Link href="https://pickr-dev.firebaseapp.com" underline="none" color="textPrimary" rel="noopener" target="_blank"><CardHeader title="Pickr" className="card_comp"/></Link>
                                 <CardMedia
                                     className="media"
                                     image={PickrImage}
@@ -99,7 +99,7 @@ class Projects extends Component {
                     <Grid item sm={3}>
                         <Zoom in={this.state.transition} timeout={1400}>
                             <Card className="card"> 
-                                <CardHeader title="CodeBuddy"/>
+                            <Link href="https://devpost.com/software/the-incredible-code-buddy" underline="none" color="textPrimary" rel="noopener" target="_blank"><CardHeader title="CodeBuddy"/></Link>
                                 <CardMedia
                                     className="media"
                                     image={BotPic}
@@ -116,15 +116,15 @@ class Projects extends Component {
                     <Grid item sm={3}>
                         <Zoom in={this.state.transition} timeout={1600}>
                             <Card className="card"> 
-                                <CardHeader title="Dynamic Quiz Generator"/>
+                            <Link href="https://young-u6.azurewebsites.net/" underline="none" color="textPrimary" rel="noopener" target="_blank"><CardHeader title="Dynamic Quiz Generator"/></Link>
                                 <CardMedia
                                     className="media"
-                                    image={PickrImage}
+                                    image={QuizGif}
                                     title="pickr"
                                 />
                                 <CardContent>
                                     <Typography variant="body2" color="textSecondary"component="p">
-                                        
+                                        A dynamic quiz generator that stores questions and answers in a database. It can retrieve the data and list the questions and answers.
                                     </Typography>
                                 </CardContent>
                             </Card>

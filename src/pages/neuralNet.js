@@ -125,8 +125,8 @@ class Connection {
 	}
 
 	move(persp, x_rad, y_rad) {
-		this.startX += 0.5 * this.length * Math.sin(this.phi) * Math.cos(this.theta);
-		this.startY += 0.5 * this.length * Math.cos(this.phi);
+		this.startX += 0.15 * this.length * Math.sin(this.phi) * Math.cos(this.theta);
+		this.startY += 0.15 * this.length * Math.cos(this.phi);
 		this.project(persp);
 	}
 
@@ -138,10 +138,10 @@ class Connection {
 		this.context.beginPath();
 		this.context.moveTo(this.startX, this.startY); 
 		this.move(persp, x_rad, y_rad);
-		if (this.dist(this.xProj, this.yProj) >= coordinates * 0.9) {
+		if (this.dist(this.xProj, this.yProj) >= coordinates * 0.8) {
 			this.startX = this.centreX;
 			this.startY = this.centreY;
-		} else{
+		} else {
 			this.context.strokeStyle = this.color;
 		}
 		this.context.lineTo(this.xProj, this.yProj);
