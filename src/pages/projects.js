@@ -26,7 +26,8 @@ class Projects extends Component {
     }
 
     triggerTransition() {
-        if (window.scrollY > 102) {
+        console.log(window.scrollY)
+        if (window.scrollY > 362) {
             this.setState({
                 transition: true
             });
