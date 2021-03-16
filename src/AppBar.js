@@ -54,7 +54,7 @@ export default function ButtonAppBar() {
             </Box>
           </Typography>
           <Typography  variant="h6" align='center' color ="textPrimary" >
-            <AnchorLink href="#about" className={classes.headers}>About Me</AnchorLink>
+            <AnchorLink href="#about_section" className={classes.headers}>About Me</AnchorLink>
             <AnchorLink href="#projects" className={classes.headers}>Projects</AnchorLink>
           </Typography>
           <Link href="https://www.linkedin.com/in/youngkwon313" color="textPrimary" rel="noopener" target="_blank"> <LinkedInIcon className={classes.social}/></Link>
